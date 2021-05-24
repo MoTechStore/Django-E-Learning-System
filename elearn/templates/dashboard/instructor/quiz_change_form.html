@@ -1,0 +1,115 @@
+{% extends 'dashboard/instructor/base.html' %}
+
+
+{% load crispy_forms_tags %}
+
+{% block body %}
+<div class="container-fluid">
+        <div class="row">
+          <div class="col-12 mb-3">
+          <div class="col-12 mb-3">
+           
+
+                <div id="content-wrapper" style="padding-top: 20px">
+        <div class="container-fluid">
+            <ol class="breadcrumb">
+                             
+                <li class="breadcrumb-item">
+                    <a href="">Registered Courses</a>
+                </li>
+                
+            </ol>
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="fas fa-table text-primary"></i>
+                    Please Select Course For Teaching
+                </div>
+                <div class="card-body">
+                   {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+  <div class="col-sm-12">
+
+
+    <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'quiz_change_list' %}">My Quizzes</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{ quiz.name }}</li>
+    </ol>
+  </nav>
+  <h2 class="m-4">
+    {{ quiz.name }}
+    <a href="{% url 'quiz_results' quiz.pk %}" class="btn btn-primary float-right">View results</a>
+  </h2>
+  <div class="row mb-3">
+
+      <form method="post" novalidate>
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" class="btn btn-success">Save changes</button>
+        <a href="{% url 'quiz_change_list' %}" class="btn btn-outline-secondary" role="button">Nevermind</a>
+        <a href="{% url 'quiz_delete' quiz.pk %}" class="btn btn-danger float-right">Delete</a>
+      </form>
+      <br>
+    </div>
+
+
+
+
+
+       <div class="card">
+    <div class="card-header">
+      <div class="row">
+        <div class="col-sm-6">
+          <strong>Questions</strong>
+        </div>
+        <div class="col-sm-6">
+          <strong>Answers</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="list-group list-group-flush list-group-formset">
+      {% for question in questions %}
+        <div class="list-group-item">
+          <div class="row">
+            <div class="col-10">
+              <a href="{% url 'question_change' quiz.pk question.pk %}">{{ question.text }}</a>
+            </div>
+            <div class="col-sm-8">
+              {{ question.answers_count }}
+            </div>
+          </div>
+        </div>
+      {% empty %}
+        <div class="list-group-item text-center">
+          <p class="text-muted font-italic mb-0">You haven't created any questions yet. Go ahead and <a href="{% url 'question_add' quiz.pk %}">add the first question</a>.</p>
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="card-footer">
+      <a href="{% url 'question_add' quiz.pk %}" class="btn btn-primary btn-sm">Add question</a>
+    </div>
+  </div>
+
+
+
+
+    </div>
+  </div>
+        </div>
+    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock body %}
+
+
+
+
+

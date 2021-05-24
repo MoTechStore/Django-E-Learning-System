@@ -1,0 +1,50 @@
+{% extends 'dashboard/instructor/base.html' %}
+{% load static %}
+
+
+{% block body %}
+
+<div class="container-fluid" style="padding-top: 20px">
+            <!-- Breadcrumbs-->
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="#" style="color: #999965; font-weight: bold; letter-spacing: 10px">Learning Management System</a>
+                </li>
+            </ol>
+            <div class="card mb-3">
+                <div class="card-header text-success">
+                    <i class="fas fa-table"></i>
+                    Please Browse And Update Notes
+                </div>
+                <div class="card-body">
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+               <form action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+
+
+                 <div class="form-group">
+            <div class="row">
+                <div class="col"><label>Report</label>
+                    <input type="file" id="myFile" name="file" placeholder="Report Attachment" enctype="multipart/form-data"></div>
+                         
+        </div>
+    </div>
+
+
+        <div class="form-group">
+            <button type="submit" style="background-color: #999965" class="btn btn btn-lg btn-block" href="">Add Now</button>
+        </div>
+    </form>
+
+        </div>
+    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

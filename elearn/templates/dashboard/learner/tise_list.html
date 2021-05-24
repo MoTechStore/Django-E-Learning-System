@@ -1,0 +1,64 @@
+{% extends 'dashboard/learner/base.html' %}
+
+
+{% block body %}
+
+  <div class="container-fluid">
+        <div class="row">
+          <div class="col-11 mb-3">
+          <div class="col-11 mb-3">
+           
+
+                <div id="content-wrapper" style="padding-top: 30px">
+        <div class="container-fluid">
+            <div class="card mb-3">
+            
+                <div class="card-body">
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+    <center><a href="/llchat"><button class="btn btn btn-primary"><i class="fa fa-refresh" aria-hidden="true"></i>
+    Read Posted Announcements</button></a><br><br><br></center>
+
+    {% for chat in object_list %}
+
+
+        <div class="chat" style="width: 150%; background: white; box-shadow: 2px 0px 25px 20px #111;">
+            <p><b class="chat-content">{{ chat|linebreaks }}</b></p>
+            <small class="chat-date">Posted on {{ chat.posted_at }}  by  {{ chat.user }}</small>
+        </div><br><br><br>
+
+    {% empty %}
+    <h1 class="heading">No Chats Yet Be The First To Message!</h1><br>
+
+    {% endfor %}
+    <!--
+    <br><a href=""><button class="btn btn-outline-primary">New Message</button></a>
+    -->
+    <div class="col-sm-4"></div>
+    </div>
+
+
+                      </div>
+                    </div>  
+                  </div>
+
+</div>
+
+
+
+<div class="col-sm-2" style="color: red">
+</div>
+
+</div>
+</div>
+
+
+{% endblock body %}
+
+
+
+
+

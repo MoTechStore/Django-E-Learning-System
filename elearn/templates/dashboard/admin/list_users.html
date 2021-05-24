@@ -1,0 +1,112 @@
+{% extends 'dashboard/admin/base.html' %}
+
+{% block body %}
+
+        <div class="container-fluid">
+        <div class="row">
+          <div class="col-12 mb-3">
+          <div class="col-12 mb-3">
+            
+                <div id="content-wrapper">
+        <div class="container-fluid">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="#" style="color: #999965; font-weight: bold; letter-spacing: 10px">Learning Mangement System</a>
+                </li>
+            </ol>
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="fas fa-table"></i>
+                    List Of Users
+                    <a  class="btn btn-sm btn-success" href="{% url 'create_user_form' %}" style="padding: 8px; float: right; background-color: #999965; color: white;">Register Admin</a>
+                </div>
+                <div class="card-body">
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Username</th>
+                                <th>User Role</th>
+                                <th>Email</th>
+                                <th>Delete</th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                        {% if users %}
+                            {% for user in users %}
+                                <tr>
+                                    <td>{{ user.id }}</td>
+                                    <td>{{ user.username }}</td>
+                                    <td>{% if user.is_learner == True %}
+                                      <p>Learner</p>
+                                    {% elif user.is_admin == True %}
+                                      <p>Admin</p>
+                                    {% else %}
+                                    <p>Instructor</p> 
+                                      {% endif %}
+                                    </td>
+                                    <td>{{ user.email }}</td>
+        <td>
+          <a href="{% url 'aduser' user.pk %}"><button type="button" class="btn btn-danger"> Delete</button></a></td>
+                                </tr>
+                            {% endfor %}
+                        {% endif %}
+                            </tbody>
+                        </table>
+                          {% if is_paginated %}
+  <ul class="pagination">
+    {% if page_obj.has_previous %}
+      <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in paginator.page_range %}
+      {% if page_obj.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if page_obj.has_next %}
+      <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+  </tbody>
+</table>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock %}
+
+{% block extrascripts %}
+  <script type="text/javascript">
+      $(function () {
+          // Hide message
+          $(".alert").fadeTo(2000, 500).slideUp(500, function () {
+              $(".alert").slideUp(500);
+          });
+      });
+  </script>
+{% endblock extrascripts %}

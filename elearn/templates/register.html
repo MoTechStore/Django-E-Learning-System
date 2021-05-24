@@ -1,0 +1,58 @@
+{% load static %}
+<link href="{% static 'css/kye.css' %}" rel="stylesheet">
+<style type="text/css">
+	#bg{
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: 100%;
+	}
+</style>
+<link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/four/css/bootstrap.min.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/three/css/bootstrap.min.css' %}">
+
+{% include 'nav.html' %}
+
+<body id="bg" style="background-image: url('{% static "img/a.jpg"%}');">
+  <div class="container-fluid">
+  <div class="row" style="padding-top: 335px">
+    <div class="col-sm-4"></div>
+
+    <div class="col-sm-4">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-10">
+        <div class="filter"></div>
+        <div class="container bg-dark">
+           <h2 style="color: white">E-Learning Portal</h2>
+           <br>
+            <form action="{% url 'register' %}" method="POST">
+            {% csrf_token %}
+                <label>Username</label><br>
+                <input type="text" name="username" required="Fill Username" style="background-color: white"><br>
+                <label>Email</label><br>
+                <input type="email" name="email" required="Fill Email" style="background-color: white"><br>
+                <label>Password</label><br>
+                <input type="password" name="password" required="Fill Password" style="background-color: white"><br>
+                <button>Sign Up</button>
+            </form>
+                  <div class="card-footer">
+        <div class="d-flex justify-content-center">
+            <div class="messages">
+                {% for message in messages %}
+
+                    <a class="alert alert-success" style="color:red;"> {{ message }}</a>
+
+                {% endfor %}
+            </div>
+          </div>
+              </div>
+      </div>
+        </div>
+    <div class="col-sm-4"></div>
+
+      </div>
+    </div>
+  </div>
+        
+    </body>
+    
+</html>

@@ -1,0 +1,83 @@
+ @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+body{
+    height: 100vh;
+    background-color: #e8eaf6;
+}
+/*.filter{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,.7);
+}*/
+.container{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    padding: 20px 25px;
+    width: 300px;
+    background-color: #fafafa;
+    box-shadow: 0 6px 8px rgba(0,0,0,.1);
+    border-radius: 8px;
+}
+.container h1{
+    text-align: left;
+    color: #212121;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+ 
+   
+
+}
+
+.container form input{
+    width: calc(100% - 20px);
+    padding: 8px 10px;
+    margin-bottom: 15px;
+    border: none;
+    background-color: transparent;
+    border-bottom: 2px solid #e0e0e0;
+    color: #212121;
+    font-size: 20px;
+    transition: .4s;
+}
+.container form input:focus{
+    border-bottom: 2px solid #2979ff;
+}
+
+.container label{
+    text-align: left;
+    color: #2979ff;
+}
+
+.container form input::placeholder{
+    color: #e2e2e2;
+}
+.container form button{
+    width: 100%;
+    padding: 8px 0;
+    border: none;
+    background-color:#2979ff;
+    font-size: 18px;
+    color: #fafafa;
+    text-transform: uppercase;
+    border-radius: 50px
+}
+
+
+video {
+  object-fit: cover;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+}

@@ -1,0 +1,122 @@
+{% extends 'dashboard/instructor/base.html' %}
+{% load static %}
+
+
+
+
+{% block body %}
+
+<div class="container-fluid">
+<div class="row">
+<div class="col-sm-3" style="color: red">
+  <p style="color: blue"></p>  
+</div>
+
+
+
+<div class="col-sm-6" style="padding-top: 20px">
+      <div class="card mb-3">
+               {% if users %}
+               {% for user in users %}
+               <nav>
+                    <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                                <a class="nav-item nav-link active text-primary" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">{{ user.first_name }}  {{ user.last_name }}</a>
+                    </div>
+                </nav>
+                <div class="card-body">
+                     {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+
+                     {% if user.avatar %}
+                        <center><img src="{{ user.avatar.url }}" class="img-thumbnail" alt="{{ user.user.username }}" style="height: 236px; width: 304px"></center><br>
+                    {% else %}
+                                    <span class="text-muted">No Profile Picture for {{ user.user.username }}</span>
+                    {% endif %}
+
+                    
+
+                        <table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Information</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Username</td>
+            <td>{{ user.user.username }}</td>
+        </tr>
+        <tr>
+            <td>First Name</td>
+            <td>{{ user.first_name }}</td>
+        </tr>
+        <tr>
+            <td>Last Name</td>
+            <td>{{ user.last_name }}</td>
+        </tr>
+        <tr>
+            <td>Phone Number</td>
+            <td>{{ user.phonenumber }}</td>
+        </tr>
+        <tr>
+            <td>Country</td>
+            <td>{{ user.country }}</td>
+        </tr>
+        <tr>
+            <td>Biography</td>
+            <td>{{ user.bio }}</td>
+        </tr>
+               
+    </tbody>
+</table>
+
+
+
+        </div>
+      </div>
+
+                      </div>
+                    </div>  
+                  </div>
+
+</div>
+ {% endfor %}
+ {% else %}
+ <center><span><p class="text-danger">No profile created yet</p></span></center>
+ <center><a href="{% url 'create_profile' %}">Click here to create</center>
+
+ {% endif %}
+
+
+
+
+<div class="col-sm-3" style="color: red">
+</div>
+
+</div>
+</div>
+
+    <script type="text/javascript" src="{% static 'js/jquery-2.1.3.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.dataTables.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+</body>
+
+</html>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,40 @@
+{% extends 'dashboard/learner/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block body %}
+  <div class="container-fluid">
+        <div class="row">
+          <div class="col-12 mb-3">
+          <div class="col-12 mb-3">
+           
+
+                <div id="content-wrapper" style="padding-top: 20px">
+        <div class="container-fluid">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="fas fa-table text-primary"></i>
+                    List of Taken Quiz
+                </div>
+                <div class="card-body">
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+
+
+  <div class="progress mb-3">
+    <div class="progress-bar" role="progressbar" aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ progress }}%"></div>
+  </div>
+  <h2 class="mb-3">{{ quiz.name }}</h2>
+  <p class="lead">{{ question.text }}</p>
+  <form method="post" novalidate>
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button type="submit" class="btn btn-primary">Next →</button>
+  </form>
+
+
+{% endblock body %}
+

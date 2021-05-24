@@ -1,0 +1,44 @@
+{% extends 'dashboard/instructor/base.html' %}
+
+
+
+{% load static %}
+{% block body %}
+ 
+      <!-- Blog Entries Column -->
+      <div class="col-md-8" style="padding-top: 20px">
+           <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <a href="{% url 'itutorial' %}" style="padding-left: 10px">
+                            <button type="submit" class="btn btn-primary">Back</button>
+                            </a>
+
+                    <a href="" style="color: green; font-weight: bold; letter-spacing: 10px; padding-left: 30px">{{ object.title }} </a>
+
+
+                </li>
+            </ol>
+
+        <h1 class="my-4">
+          <small></small>
+        </h1>
+
+        <!-- Blog Post -->
+        <div class="card mb-4">
+          {% if object.thumb %}
+              <img src="{{ object.thumb.url }}" alt="{{ object.title }}" style="width:500px; height:500px">
+          {% else %}
+                <p></p>
+          {% endif %}
+          <div class="card-body">
+            <h2 class="card-title"></h2>
+            <p class="card-text">{{ object.content|linebreaks }}</p>
+          </div>
+          <div class="card-footer text-muted">
+            Posted on {{ object.created_at }} by
+            <a href="#">{{ object.user.username }}</a>
+
+          </div>
+        </div>
+      </div>
+{% endblock %}      

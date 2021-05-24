@@ -1,0 +1,50 @@
+{% extends 'dashboard/instructor/base.html' %}
+
+
+{% load crispy_forms_tags %}
+
+{% block body %}
+<div class="container-fluid">
+        <div class="row">
+          <div class="col-12 mb-3">
+          <div class="col-12 mb-3">
+           
+
+                <div id="content-wrapper" style="padding-top: 20px">
+        <div class="container-fluid">
+            <ol class="breadcrumb">
+                             
+                <li class="breadcrumb-item">
+                    <a href="">Registered Courses</a>
+                </li>
+                
+            </ol>
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="fas fa-table text-primary"></i>
+                    Update Informations of Your Quiz
+                </div>
+                <div class="card-body">
+                   {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+  <div class="col-sm-12">
+    
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'quiz_change_list' %}">My Quizzes</a></li>
+      <li class="breadcrumb-item"><a href="{% url 'quiz_change' quiz.pk %}">{{ quiz.name }}</a></li>
+      <li class="breadcrumb-item"><a href="{% url 'question_change' quiz.pk question.pk %}">{{ question.text }}</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Confirm deletion</li>
+    </ol>
+  </nav>
+  <h2 class="mb-3">Confirm deletion</h2>
+  <p class="lead">Are you sure you want to delete the question <strong>"{{ question.text }}"</strong>? There is no going back.</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger btn-lg">Yes, I'm sure</button>
+    <a href="{% url 'question_change' quiz.pk question.pk %}" class="btn btn-outline-secondary btn-lg" role="button">Nevermind</a>
+  </form>
+{% endblock %}

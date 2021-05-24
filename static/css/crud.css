@@ -1,0 +1,16 @@
+.column {
+  float: left;
+  width: 10%;
+}
+
+#second {
+  float: left;
+	 width: 80%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}

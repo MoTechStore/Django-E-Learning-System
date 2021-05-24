@@ -1,0 +1,192 @@
+{% extends 'dashboard/instructor/base.html' %}
+
+{% block body %}
+
+        <div class="container-fluid">
+        <div class="row">
+          <div class="col-12 mb-3">
+          <div class="col-12 mb-3">
+           
+
+                <div id="content-wrapper" style="padding-top: 30px">
+        <div class="container-fluid">
+            <ol class="breadcrumb">
+                             
+                <li class="breadcrumb-item">
+                    <a href="">Post New Tutorial</a>
+                </li>
+                
+            </ol>
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="fas fa-table text-primary"></i>
+                    Please Do Not Forget To Attach Tutorial Thumbnail
+                </div>
+                <div class="card-body">
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+              <form method="post" action="{% url 'publish_tutorial' %}" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <div class="form-label-group">
+                    <select class="w3-select w3-border" name="course_id" required="">
+                  }
+
+  <option value="">Choose Course</option>
+
+  {% if courses %}
+  {% for course in courses %}
+<option value="{{ course.id }}">{{ course.name }}</option>
+  {% endfor %}
+  {% endif %}
+</select>
+                                </div>
+
+             <div class="form-group">
+            <div class="row">
+                <div class="col"><label>Attach Image</label><br>
+                    <input type="file" name="thumb" placeholder="Report Attachment" enctype="multipart/form-data">
+                </div>
+            </div>          
+        </div>
+
+
+
+                	  <div class="form-group">
+            <div class="row">
+                <div class="col"><label>Tutorial Title</label><br>
+
+                	<input type="text" name="title">        
+            </div>          
+        </div>
+      </div>
+
+          	  <div class="form-group">
+            <div class="row">
+                <div class="col"><label>Tutorial Content</label><br>
+            	<textarea name="content"s rows="5" cols="40"></textarea>
+
+            </div>          
+        </div>
+      </div>
+
+
+          <div class="form-group">
+            <div class="row">
+            	<button type="submit" style="background-color:" class="btn btn btn-primary" href="">Post</button>
+
+            </div>          
+        </div>  
+</form>
+                      
+               </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel" style="color: blue">Ready to Delete?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body" style="color: red;"><h5> Select "Delete" below if you want to Delete</h5></div>
+            <div class="modal-footer">
+                <button class="btn btn-success" type="button" data-dismiss="modal">Cancel</button>
+               <a class="btn btn-danger" href="">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+      
+          </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock body %}
+
+{% block extrascripts %}
+  <script type="text/javascript">
+      $(function () {
+          // Log in & Sign up buttons
+          // The formURL is given explicitly
+          $("#login-btn").modalForm({
+            formURL: "{% url 'login' %}"
+          });
+
+          $("#signup-btn").modalForm({
+            formURL: "{% url 'signup' %}"
+          });
+
+
+
+          var asyncSuccessMessageUpdate = [
+            "<div ",
+            "style='position:fixed;top:0;z-index:10000;width:100%;border-radius:0;' ",
+            "class='alert alert-icon alert-success alert-dismissible fade show mb-0' role='alert'>",
+            "Success: Data was updated.",
+            "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>",
+            "<span aria-hidden='true'>&times;</span>",
+            "</button>",
+            "</div>",
+            "<script>",
+            "$('.alert').fadeTo(2000, 500).slideUp(500, function () {$('.alert').slideUp(500).remove();});",
+            "<\/script>"
+          ].join("");
+
+
+      function updateBookModalForm() {
+            $(".update-book").each(function () {
+              $(this).modalForm({
+                formURL: $(this).data("form-url"),
+                asyncUpdate: true,
+                asyncSettings: {
+                  closeOnSubmit: false,
+                  successMessage: asyncSuccessMessageUpdate,
+                  dataUrl: "books/",
+                  dataElementId: "#books-table",
+                  dataKey: "table",
+                  addModalFormFunction: updateBookModalForm
+                }
+              });
+            });
+          }
+          updateBookModalForm();
+
+          
+
+
+    
+         
+
+          // Read and Delete book buttons open modal with id="modal"
+          // The formURL is retrieved from the data of the element
+          $(".bs-modal").each(function () {
+              $(this).modalForm({formURL: $(this).data("form-url")});
+          });
+
+          // Hide message
+          $(".alert").fadeTo(2000, 500).slideUp(500, function () {
+              $(".alert").slideUp(500);
+          });
+      });
+  </script>
+{% endblock extrascripts %}
+
+
+
+
+
+
+

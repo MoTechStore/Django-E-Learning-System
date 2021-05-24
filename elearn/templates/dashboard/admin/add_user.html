@@ -1,0 +1,80 @@
+{% extends 'dashboard/admin/base.html' %}
+
+
+{% load static %}
+
+{% block body %}
+    <div id="content-wrapper">
+
+        <div class="container-fluid">
+            <!-- Breadcrumbs-->
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="#" style="color: #999965; font-weight: bold; letter-spacing: 10px">Case Inventory System</a>
+                </li>
+            </ol>
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="fas fa-table"></i>
+                    Add New User To The System
+                </div>
+                <div class="card-body">
+                  <form class="form-horizontal" action="{% url 'create_user' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-label-group">
+                                    <input type="text" class="form-control" name="first_name" placeholder="First Name" id="inputFirst" required="">
+                                    <label for="inputFirst">First Name</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-label-group">
+                                    <input type="text" class="form-control" name="last_name" placeholder="Last Name" id="inputLast" required="">
+                                    <label for="inputLast">Last Name</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-label-group">
+                                    <input type="text" class="form-control" name="username" placeholder="Username" id="inputdescription" required="">
+                                    <label for="inputdescription">Username</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-label-group">
+                                    <input class="form-control" type="email" name="email" placeholder="Email" id="inputMobile" required="">
+                                    <label for="inputMobile">Email</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-row">
+                            <div class="col-md-6">
+                               <div class="form-label-group">
+                                    <input type="text" class="form-control" name="password" placeholder="Password" id="inputdescription" required="">
+                                    <label for="inputdescription">Password</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+            <button type="submit" style="background-color: #999965" class="btn btn btn-lg btn-block" href="">Submit Now</button>
+        </div>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascript %}
+    <script type="text/javascript">
+        $("#id_username").attr("placeholder", "Enter Username");
+        $("#id_password").attr("placeholder", "Enter Password");
+    </script>
+{% endblock %}

@@ -1,0 +1,78 @@
+{% extends 'dashboard/learner/base.html' %}
+
+
+{% load crispy_forms_tags %}
+{% block body %}
+
+        <div class="container-fluid">
+        <div class="row">
+          <div class="col-12 mb-3">
+          <div class="col-12 mb-3">
+           
+
+                <div id="content-wrapper" style="padding-top: 20px">
+        <div class="container-fluid">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="fas fa-table text-primary"></i>
+                    Please Select Course For Learning
+                </div>
+                <div class="card-body">
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+
+  <h2 class="mb-3">Update Course You're Interestered</h2>
+  <form method="post" novalidate>
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button type="submit" class="btn btn-success">Save changes</button>
+    <a href="{% url 'lquiz_list' %}" class="btn btn-outline-secondary">Nevermind</a>
+  </form>
+                         
+               </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+      
+          </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock body %}
+
+{% block extrascripts %}
+  <script type="text/javascript">
+      $(function () {
+                   
+          // Read and Delete book buttons open modal with id="modal"
+          // The formURL is retrieved from the data of the element
+          $(".bs-modal").each(function () {
+              $(this).modalForm({formURL: $(this).data("form-url")});
+          });
+
+          // Hide message
+          $(".alert").fadeTo(2000, 500).slideUp(500, function () {
+              $(".alert").slideUp(500);
+          });
+      });
+  </script>
+{% endblock extrascripts %}
+
+
+
+
+
+
+
+
+

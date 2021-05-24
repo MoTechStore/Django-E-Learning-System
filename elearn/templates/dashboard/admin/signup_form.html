@@ -1,0 +1,50 @@
+{% extends 'dashboard/admin/base.html' %}
+{% load static %}
+
+
+{% load crispy_forms_tags %}
+
+{% block body %}
+  <div class="container-fluid">
+        <div class="row">
+          <div class="col-12 mb-3">
+          <div class="col-12 mb-3">
+           
+
+                <div id="content-wrapper" style="padding-top: 20px">
+        <div class="container-fluid">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="fas fa-table text-primary"></i>
+                    Please Add New Instructor For E-Learning
+                </div>
+                <div class="card-body">
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+      <h4 class="text-primary">Add New Instructor</h4>
+      <form method="post" novalidate>
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ next }}">
+        {{ form|crispy }}
+        <button type="submit" class="btn btn-success">Submit</button>
+      </form>
+      <br>
+
+        <div class="card-footer">
+        <div class="d-flex justify-content-center">
+            <div class="messages">
+                {% for message in messages %}
+
+                    <a class="alert alert-success" style="color:red;"> {{ message }}</a>
+
+                {% endfor %}
+            </div>
+          </div>
+      </div>
+              
+    </div>
+  </div>
+{% endblock body %}

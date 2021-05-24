@@ -1,0 +1,58 @@
+{% extends 'dashboard/learner/base.html' %}
+
+
+
+{% load static %}
+{% block body %}
+ 
+
+      <!-- Blog Entries Column -->
+      <div class="col-md-8">
+        {% for tutorial in tutorials %}
+
+        <h1 class="my-4">
+          <small></small>
+        </h1>
+
+        <!-- Blog Post -->
+        <div class="card mb-4">
+            <h2 class="card-title text-primary">{{ tutorial.course.name }} - {{ tutorial.title }}</h2>
+
+          {% if tutorial.thumb %}
+              <img src="{{ tutorial.thumb.url }}" alt="{{ tutorial.title }}" style="width:400px; height: 400px">
+          {% else %}
+                <p></p>
+          {% endif %}
+          <div class="card-body">
+            <p class="card-text">{{ tutorial.content | truncatechars:100 }}</p>
+            <a href="{% url 'tutorial-detail' tutorial.pk %}" class="btn btn-primary">Read More &rarr;</a>
+          </div>
+          <div class="card-footer text-muted">
+            Posted on {{ tutorial.created_at }} by
+            <a href="#">{{ tutorial.user.username }}</a>  
+          </div>
+        </div>
+
+
+        {% endfor %}
+         
+
+         {% if is_paginated %}
+        <!-- Pagination -->
+        <ul class="pagination justify-content-center mb-4">
+           {% if page_obj.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.previous_page_number }}">&larr; Previous page</a>
+          </li>
+           {% endif %}
+
+           {% if page_obj.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next page &rarr;</a>
+          </li>
+           {% endif %}
+        </ul>
+        {% endif %}
+
+      </div>
+{% endblock %}      

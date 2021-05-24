@@ -1,0 +1,105 @@
+{% extends 'dashboard/admin/base.html' %}
+{% load static %}
+
+
+
+
+{% block body %}
+
+<div class="container-fluid">
+<div class="row">
+
+<div class="col-sm-12" style="padding-top: 10px;">
+    <div class="col-sm-8">
+      <div class="card mb-3">
+            {% if users %}
+            <center><p class="text-danger">You have already created profile</p></center>
+            {% else %}
+                <div class="card-header">
+                    <i class="fas fa-table text-primary"></i>
+                    Create Your Profile 
+                </div>
+                <div class="card-body">
+            <form action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+        <div class="form-group">
+                <div class="col"><input type="text" class="form-control" name="first_name" placeholder="First Name" required="required"></div>
+        </div>
+        <div class="form-group">
+                <div class="col"><input type="text" class="form-control" name="last_name" placeholder="Last Name" required="required"></div>                 
+        </div>
+
+         <div class="form-group">
+                <div class="col"><input type="text" class="form-control" name="phonenumber" placeholder="Phone Number" required="required"></div>
+        </div>
+
+        <div class="form-group">
+                <div class="col"><input type="text" class="form-control" name="birth_date" placeholder="Date of Birth" required="required"></div>
+        </div>
+
+      <div class="form-group">
+                <div class="col"><input type="text" class="form-control" name="bio" placeholder="Hobby" required="required"></div>
+        </div>
+        <div class="form-group">
+                <div class="col"><input type="text" class="form-control" name="city" placeholder="City" required="required"></div>
+        </div>
+        <div class="form-group">
+                <div class="col"><input type="text" class="form-control" name="country" placeholder="Country" required="required"></div>
+        </div>
+          <div class="form-group">
+            <div class="row">
+                <div class="col"><label></label><br>
+                <textarea name="content"s rows="5" cols="40" placeholder="Compose Your Biography"></textarea>
+
+            </div>          
+        </div>
+      </div>
+
+        <div class="form-group">
+                <div class="col"><label>Choose Profile Picture</label>
+                    <input type="file" id="myFile" name="avatar" placeholder="Report Attachment" enctype="multipart/form-data"></div>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-lg btn-block" href="">Save</button>
+        </div>
+    </form>
+    {% endif %}
+
+        </div>
+</div>
+
+                      </div>
+                    </div>  
+                  </div>
+
+</div>
+
+
+
+<div class="col-sm-3" style="color: red">
+</div>
+
+</div>
+</div>
+
+    <script type="text/javascript" src="{% static 'js/jquery-2.1.3.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.dataTables.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+</body>
+
+</html>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
